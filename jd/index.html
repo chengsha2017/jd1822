@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+	        ul,ol{ list-style: none;}
+	        .wrapper{
+	            width: 670px;
+	            height: 240px;
+	            margin: 100px auto;
+	            overflow: hidden;
+	            position: relative;
+	        }
+	        ul{
+	        	position:relative;
+	        }
+	        ul li{
+	        	position:absolute;
+	        	top:0;
+	        	left:0;
+	        }
+	        ol{
+	            position: absolute;
+	            right: 0;
+	            bottom: 10px;
+	            width: 190px;
+	        }
+	        ol li{
+	            float: left;
+	            width: 20px;
+	            height: 20px;
+	            margin: 0 5px;
+	            text-align: center;
+	            border-radius: 50%;
+	            cursor: default;
+	            background-color: #abc;
+	        }
+	        ol li.current{
+	            background-color: pink;
+	        }
+		</style>
+		<script src='js/jquery-1.11.1.min.js'></script>
+	</head>
+	<body>
+		<div class="wrapper">
+	        <ul>
+	            <li style="z-index: 6;"><img src="img/1.jpg" alt=""/></li>
+	            <li style="z-index: 5;"><img src="img/2.jpg" alt=""/></li>
+	            <li style="z-index: 4;"><img src="img/3.jpg" alt=""/></li>
+	            <li style="z-index: 3;"><img src="img/4.jpg" alt=""/></li>
+	            <li style="z-index: 2;"><img src="img/5.jpg" alt=""/></li>
+	            <li style="z-index: 1;"><img src="img/6.jpg" alt=""/></li>
+	        </ul>
+	        <ol style="z-index: 10;">
+	            <li class="current">1</li>
+	            <li>2</li>
+	            <li>3</li>
+	            <li>4</li>
+	            <li>5</li>
+	            <li>6</li>
+	        </ol>
+    	</div>
+	</body>
+</html>
+<script>
+	var $ulist=$('ul li');
+	var $olist=$('ol li');
+	var index=0;
+//	console.log($ulist,$olist);
+	var timer=setInterval(autoplay,2000);
+	function autoplay(){
+		index++;
+		if(index == $olist.size()){
+			index=0;
+		}
+		$ulist.eq(index).fadeIn(1500).siblings().fadeOut(1500);
+		$olist.eq(index).addClass('current').siblings().removeClass('current');
+	}
+</script>
